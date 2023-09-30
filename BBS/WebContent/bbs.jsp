@@ -10,6 +10,12 @@
 <meta name="viewport" content="width=device-width initial-scale=1">
 <!-- <link rel="stylesheet" href="css/bootstrap.css">-->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<style>
+	a, a:hover {
+		color: #000000;
+		text-decoration: none;
+	}
+</style>
 <title>JSP 게시판 웹 사이트</title>
 </head>
 <body> 
@@ -24,7 +30,7 @@
 		}
 	%>
 
-	<nav class="navbar navbar-expand-lg bg-body-tertiary">
+	<nav class="navbar navbar-expand-lg bg-body-tertiary mb-3">
 	  <div class="container-fluid">
 	    <a class="navbar-brand" href="main.jsp">JSP 게시판 웹 사이트</a>
 	    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -98,8 +104,19 @@
 					%>
 				</tbody>
 			</table>
-			<a href="write.jsp" class="btn btn-primary pull-right">글쓰기</a>
 		</div>
+			<%
+				if(pageNumber != 1) {
+			%>
+				<a href="bbs.jsp?pageNumber=<%=pageNumber - 1 %>" class="btn btn-success btn-arraw-left">이전</a>
+			<%
+				} if(bbsDAO.nextPage(pageNumber + 1)) {
+			%>
+				<a href="bbs.jsp?pageNumber=<%=pageNumber + 1 %>" class="btn btn-success btn-arraw-left">다음</a>			
+			<%
+				}
+			%>			
+		<a href="write.jsp" class="btn btn-primary" style="float: right;">글쓰기</a>
 	</div>
 	
 	
