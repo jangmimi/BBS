@@ -10,6 +10,13 @@
 <title>JSP 게시판 웹 사이트</title>
 </head>
 <body> 
+	<%
+		String userID = null;
+		if(session.getAttribute("userID") != null) {
+			userID = (String) session.getAttribute("userID");
+		}
+	%>
+
 	<nav class="navbar navbar-expand-lg bg-body-tertiary">
 	  <div class="container-fluid">
 	    <a class="navbar-brand" href="main.jsp">JSP 게시판 웹 사이트</a>
@@ -18,62 +25,44 @@
 	    </button>
 	    <div class="collapse navbar-collapse" id="navbarNavDropdown">
 	      <ul class="navbar-nav">
-	        <li class="nav-item">
-	          <a class="nav-link active" aria-current="page" href="#">메인</a>
+	        <li class="nav-item active">
+	          <a class="nav-link active" aria-current="page" href="main.jsp">메인</a>
 	        </li>
 	        <li class="nav-item">
 	          <a class="nav-link" href="#">게시판</a>
 	        </li>
+	        
+	        <%
+	        	if(userID == null) {
+	       %> 		
 	        <li class="nav-item dropdown">
 	          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 	            접속하기
 	          </a>
 	          <ul class="dropdown-menu">
 	            <li><a class="dropdown-item" href="login.jsp">로그인</a></li>
-	            <li><a class="dropdown-item active" href="join.jsp">회원가입</a></li>
+	            <li><a class="dropdown-item" href="join.jsp">회원가입</a></li>
 	          </ul>
 	        </li>
 	      </ul>
+	        <%
+	        	} else {
+	        %>
+	        <li class="nav-item dropdown">
+	          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+	            회원관리
+	          </a>
+	          <ul class="dropdown-menu">
+	            <li><a class="dropdown-item" href="logoutAction.jsp">로그아웃</a></li>
+	          </ul>
+	        </li>
+	      </ul>
+	        <%
+	        	}
+        	%>
 	    </div>
 	  </div>
 	</nav>
-	
-	<div class="container">
-		<div class="col-lg-4"></div>
-		<div class="col-lg-4">
-			<div class="jumbtron" style="padding-top:20px;">
-				<form method="post" action="joinAction.jsp">
-					<h3 style="text-align: center">회원가입 화면</h3>
-					<div class="form-group">
-						<input type="text" class="form-control mb-3" placeholder="아이디" name="userID" maxlength="20">
-					</div>
-					<div class="form-group">
-						<input type="password" class="form-control mb-3" placeholder="비밀번호" name="userPassword" maxlength="20">
-					</div>
-					<div class="form-group">
-						<input type="text" class="form-control mb-3" placeholder="이름" name="userName" maxlength="20">
-					</div>
-					<div class="form-group mb-3" style="text-align: center;">
-						<div class="btn-group" data-toggle="buttons">
-							<label class="btn btn-primary active">
-								<input type="radio" name="userGender" autocomplete="off" value="남자" checked>남자
-							</label>
-							<label class="btn btn-primary active">
-								<input type="radio" name="userGender" autocomplete="off" value="여자">여자
-							</label>
-						</div>
-					</div>
-					<div class="form-group">
-						<input type="email" class="form-control mb-3" placeholder="이메일" name="userEmail" maxlength="20">
-					</div>
-					<input type="submit" class="btn btn-primary form-control" value="회원가입">
-
-					</form>
-			</div>
-		</div>
-		<div class="col-lg-4"></div>
-	</div>
-	
 	
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<!-- <script src="js/bootstrap.js"></script> -->

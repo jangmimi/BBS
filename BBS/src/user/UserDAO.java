@@ -11,7 +11,6 @@ public class UserDAO {
 	private ResultSet rs;
 	
 	public UserDAO() {
-		System.out.println("UserDAO() 실행");
 		try {
 			String dbURL = "jdbc:mysql://localhost:3306/BBS?"
 					+ "useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC"; // DB 접속 주소
@@ -19,7 +18,6 @@ public class UserDAO {
 			String dbPassword = "1234";
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			conn = DriverManager.getConnection(dbURL, dbID, dbPassword);	
-			System.out.println("UserDAO() 실행 후 conn : " + conn);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

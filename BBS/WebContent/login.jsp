@@ -29,7 +29,7 @@
 	            접속하기
 	          </a>
 	          <ul class="dropdown-menu">
-	            <li class="active"><a class="dropdown-item" href="login.jsp">로그인</a></li>
+	            <li><a class="dropdown-item active" href="login.jsp">로그인</a></li>
 	            <li><a class="dropdown-item" href="join.jsp">회원가입</a></li>
 	          </ul>
 	        </li>

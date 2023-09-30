@@ -16,6 +16,16 @@
 </head>
 <body> 
 	<% 
+		String userID = null;
+		if(session.getAttribute("userID") != null) {
+			userID = (String) session.getAttribute("userID");
+		}
+		if(userID != null) { %>
+			<script>
+				alert('이미 로그인이 되어있습니다.');
+				location.href='main.jsp';
+			</script>
+	<%	}
 		if(user.getUserID() == null || user.getUserPassword() == null || user.getUserName() == null
 			|| user.getUserGender() == null || user.getUserEmail() == null) {
 			%>
@@ -34,7 +44,9 @@
 					history.back()
 				</script>
 			<%
-			} else { %>
+			} else { 
+				session.setAttribute("userID", user.getUserID());
+			%>
 			<script>
 				alert('회원가입 완료!')
 				location.href='main.jsp'

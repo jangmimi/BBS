@@ -12,31 +12,43 @@
 <title>JSP 게시판 웹 사이트</title>
 </head>
 <body> 
-	<% System.out.println("로그인액션");
+	<% 
+		String userID = null;
+		if(session.getAttribute("userID") != null) {
+			userID = (String) session.getAttribute("userID");
+		}
+		if(userID != null) { %>
+			<script>
+				alert('이미 로그인이 되어있습니다.');
+				location.href='main.jsp';
+			</script>
+	<%	}
 		UserDAO userDAO = new UserDAO();
 		int result = userDAO.login(user.getUserID(), user.getUserPassword());
-		System.out.println("result = " + result);
-		if(result == 1) { %>
+		
+		if(result == 1) { 
+			session.setAttribute("userID", user.getUserID());
+		%>
 		<script>
-			location.href='main.jsp'
+			location.href='main.jsp';
 		</script>
 		<%
 		} else if(result == 0) {%>
 			<script>
-				alert('비밀번호가 틀립니다.')
-				history.back()
+				alert('비밀번호가 틀립니다.');
+				history.back();
 			</script>
 		<%
 		} else if(result == -1) {%>
 			<script>
-				alert('존재하지 않는 아이디입니다.')
-				history.back()
+				alert('존재하지 않는 아이디입니다.');
+				history.back();
 			</script>
 		<%
 		} else if(result == -2){ %>
 			<script>
-				alert('데이터베이스 오류가 발생했습니다.')
-				history.back()
+				alert('데이터베이스 오류가 발생했습니다.');
+				history.back();
 			</script>
 	<%}%>
 </body>
