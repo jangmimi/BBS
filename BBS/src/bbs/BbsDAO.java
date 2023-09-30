@@ -76,23 +76,40 @@ public class BbsDAO {
 	
 	public ArrayList<Bbs> getList(int pageNumber) {
 		String sql = "SELECT * FROM BBS WHERE  bbsID < ? AND bbsAvailable = 1 ORDER BY bbsID DESC LIMIT 10";
-		
 		ArrayList<Bbs> bbsList = new ArrayList<>();
-		
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, getNext() - (pageNumber - 1) * 10);
-			pstmt.setString(2, bbsTitle);
-			pstmt.setString(3, userID);
-			pstmt.setString(4, getDate());
-			pstmt.setString(5, bbsContent);
-			pstmt.setInt(6, 1);
-
-			return pstmt.executeUpdate();
-			
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Bbs bbs = new Bbs();
+				bbs.setBbsID(rs.getInt(1));
+				bbs.setBbsTitle(rs.getString(2));
+				bbs.setUserID(rs.getString(3));
+				bbs.setBbsDate(rs.getString(4));
+				bbs.setBbsContent(rs.getString(5));
+				bbs.setBbsAvailable(rs.getInt(6));
+				bbsList.add(bbs);
+			}
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 		return bbsList;
+	}
+	
+	public boolean nextPage(int pageNumber) {
+		String sql = "SELECT * FROM BBS WHERE  bbsID < ? AND bbsAvailable = 1";
+		ArrayList<Bbs> bbsList = new ArrayList<>();
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, getNext() - (pageNumber - 1) * 10);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				return true;
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 }
