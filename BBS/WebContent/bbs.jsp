@@ -26,10 +26,10 @@
 	    <div class="collapse navbar-collapse" id="navbarNavDropdown">
 	      <ul class="navbar-nav">
 	        <li class="nav-item active">
-	          <a class="nav-link active" aria-current="page" href="main.jsp">메인</a>
+	          <a class="nav-link" aria-current="page" href="main.jsp">메인</a>
 	        </li>
 	        <li class="nav-item">
-	          <a class="nav-link" href="bbs.jsp">게시판</a>
+	          <a class="nav-link active" href="bbs.jsp">게시판</a>
 	        </li>
 	        
 	        <%
@@ -63,6 +63,32 @@
 	    </div>
 	  </div>
 	</nav>
+	
+	<div class="container">
+		<div class="row">
+			<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
+				<thead>
+					<tr>
+						<th style="background-color: #eeeeee; text-align: center;">번호</th>
+						<th style="background-color: #eeeeee; text-align: center;">제목</th>
+						<th style="background-color: #eeeeee; text-align: center;">작성자</th>
+						<th style="background-color: #eeeeee; text-align: center;">작성일</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>1</td>
+						<td>안녕하세요.</td>
+						<td>홍길동</td>
+						<td>2023-09-30</td>
+					</tr>
+				</tbody>
+			</table>
+			<a href="write.jsp" class="btn btn-primary pull-right">글쓰기</a>
+		</div>
+	</div>
+	
+	
 	
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<!-- <script src="js/bootstrap.js"></script> -->

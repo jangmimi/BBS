@@ -19,10 +19,10 @@
 	    <div class="collapse navbar-collapse" id="navbarNavDropdown">
 	      <ul class="navbar-nav">
 	        <li class="nav-item">
-	          <a class="nav-link active" aria-current="page" href="#">메인</a>
+	          <a class="nav-link active" aria-current="page" href="main.jsp">메인</a>
 	        </li>
 	        <li class="nav-item">
-	          <a class="nav-link" href="#">게시판</a>
+	          <a class="nav-link" href="bbs.jsp">게시판</a>
 	        </li>
 	        <li class="nav-item dropdown">
 	          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
